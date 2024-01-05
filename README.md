@@ -1,2 +1,1 @@
-# Rock-paper-scissors-
-Developed a game.
+# The classic rock, paper and scissors game!
