@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+let movesLeft = 10;
+let playerScore = 0;
+let computerScore = 0;
+
 function playGame(playerChoice) {
     const choices = ["rock", "paper", "scissors"];
     const computerChoice = choices[Math.floor(Math.random() * 3)];
@@ -21,10 +25,10 @@ function playGame(playerChoice) {
         (playerChoice === "scissors" && computerChoice === "paper")
     ) {
         result = "You win!";
-        updateScore("p-count"); // Update player score
+        playerScore++;
     } else {
         result = "You lose!";
-        updateScore("c-count"); // Update computer score
+        computerScore++;
     }
 
     const resultElement = document.querySelector(".result");
@@ -33,14 +37,81 @@ function playGame(playerChoice) {
     } else {
         console.error("Element with class 'result' not found.");
     }
+
+    updateScore();
 }
 
-function updateScore(scoreClass) {
-    const scoreElement = document.querySelector(`.${scoreClass}`);
-    if (scoreElement) {
-        const currentScore = parseInt(scoreElement.innerText, 10);
-        scoreElement.innerText = currentScore + 1;
+function updateScore() {
+    const playerScoreElement = document.querySelector(".p-count");
+    const computerScoreElement = document.querySelector(".c-count");
+
+    if (playerScoreElement && computerScoreElement) {
+        playerScoreElement.innerText = playerScore;
+        computerScoreElement.innerText = computerScore;
     } else {
-        console.error(`Element with class '${scoreClass}' not found.`);
+        console.error("Score elements not found.");
+    }
+
+    if (movesLeft === 1) {
+        displayGameOverAndWinner();
+    } else {
+        movesLeft--;
+        const movesLeftElement = document.querySelector(".movesleft");
+        if (movesLeftElement) {
+            movesLeftElement.innerText = `Moves Left: ${movesLeft}`;
+        }
     }
 }
+
+function displayGameOverAndWinner() {
+    const messageBox = document.querySelector(".message-box");
+
+    if (messageBox) {
+        messageBox.style.display = "block";
+
+        const resultElement = document.querySelector(".result");
+        if (resultElement) {
+            resultElement.innerText = " ";
+        }
+
+        let overallMessage = "";
+        if (playerScore > computerScore) {
+            overallMessage = "Player wins overall!";
+        } else if (computerScore > playerScore) {
+            overallMessage = "Computer wins overall!";
+        } else {
+            overallMessage = "It's a tie overall!";
+        }
+
+        messageBox.innerHTML += `<p class="overall-winner">${overallMessage}</p>`;
+        messageBox.innerHTML += "<p>Game Over! Thank you for playing.</p>";
+    }
+}
+function restartGame() {
+    movesLeft = 10;
+    playerScore = 0;
+    computerScore = 0;
+
+    const movesLeftElement = document.querySelector(".movesleft");
+    const playerScoreElement = document.querySelector(".p-count");
+    const computerScoreElement = document.querySelector(".c-count");
+    const resultElement = document.querySelector(".result");
+    const messageBox = document.querySelector(".message-box");
+
+    if (movesLeftElement && playerScoreElement && computerScoreElement && resultElement && messageBox) {
+        movesLeftElement.innerText = `Moves Left: ${movesLeft}`;
+        playerScoreElement.innerText = playerScore;
+        computerScoreElement.innerText = computerScore;
+        resultElement.innerText = "";
+        messageBox.style.display = "none";
+
+        const buttons = document.querySelectorAll(".options button");
+        buttons.forEach((button) => {
+            button.disabled = false;
+        });
+    } else {
+        console.error("Some elements not found.");
+    }
+}
+
+
