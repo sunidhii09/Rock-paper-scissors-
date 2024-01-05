@@ -4,7 +4,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	background: #082c6c;
+	background: #788eb5;
 	color: #fff;
 }
 /* To center everything in game */
@@ -55,9 +55,9 @@
 	padding: 0.8rem;
 	width: 100px;
 	border-radius: 10px;
-	background: green;
+	background: rgb(80, 8, 132);
 	outline: none;
-	border-color: green;
+	border-color: rgb(80, 8, 132);
 	border: none;
 	cursor: pointer;
 }
@@ -69,19 +69,48 @@
 
 /* Reload button style */
 .reload {
-	display: none;
-	margin-top: 2rem;
-	padding: 1rem;
-	background: green;
-	outline: none;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
+	display: block;
+    top: 600px; /* Adjust the top position as needed */
+    right: 30px; /* Adjust the right position as needed */
+    padding: 1rem;
+    background: rgb(48, 15, 15);
+    color: rgb(255, 255, 255); /* Add text color */
+    font-size: 1rem; /* Adjust font size */
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .result{
 	margin-top: 20px;
 	font-size: 1.2rem;
+}
+
+.message-box {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.message-box p {
+    margin-bottom: 20px;
+}
+
+/* Style for Overall Winner Message */
+.overall-winner {
+    color: rgb(80, 8, 132);
+    font-weight: bold;
+    font-size: 3rem;
 }
 
 /* Responsive Design */
