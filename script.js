@@ -31,6 +31,10 @@ function playGame(playerChoice) {
         computerScore++;
     }
 
+    console.log("Result:", result);
+    console.log("Player score:", playerScore);
+    console.log("Computer score:", computerScore);
+
     const resultElement = document.querySelector(".result");
     if (resultElement) {
         resultElement.innerText = `Computer chose ${computerChoice}. ${result}`;
@@ -40,6 +44,7 @@ function playGame(playerChoice) {
 
     updateScore();
 }
+
 
 function updateScore() {
     const playerScoreElement = document.querySelector(".p-count");
@@ -87,31 +92,3 @@ function displayGameOverAndWinner() {
         messageBox.innerHTML += "<p>Game Over! Thank you for playing.</p>";
     }
 }
-function restartGame() {
-    movesLeft = 10;
-    playerScore = 0;
-    computerScore = 0;
-
-    const movesLeftElement = document.querySelector(".movesleft");
-    const playerScoreElement = document.querySelector(".p-count");
-    const computerScoreElement = document.querySelector(".c-count");
-    const resultElement = document.querySelector(".result");
-    const messageBox = document.querySelector(".message-box");
-
-    if (movesLeftElement && playerScoreElement && computerScoreElement && resultElement && messageBox) {
-        movesLeftElement.innerText = `Moves Left: ${movesLeft}`;
-        playerScoreElement.innerText = playerScore;
-        computerScoreElement.innerText = computerScore;
-        resultElement.innerText = "";
-        messageBox.style.display = "none";
-
-        const buttons = document.querySelectorAll(".options button");
-        buttons.forEach((button) => {
-            button.disabled = false;
-        });
-    } else {
-        console.error("Some elements not found.");
-    }
-}
-
-
