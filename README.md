@@ -1,1 +1,1 @@
-# The classic rock, paper and scissors game!
+# Play the classic rock, paper and scissors game!
